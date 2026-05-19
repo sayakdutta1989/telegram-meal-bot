@@ -1,7 +1,10 @@
+import os
 import json
 import random
 from datetime import datetime, timedelta
-import os
+from threading import Thread
+
+from flask import Flask
 
 from telegram import Update
 from telegram.ext import (
@@ -30,6 +33,20 @@ COOLDOWN_DAYS = {
 
 # auto-delete history older than this
 HISTORY_RETENTION_DAYS = 14
+
+# =========================
+# FLASK (for Render port)
+# =========================
+
+app_web = Flask(__name__)
+
+@app_web.route("/")
+def home():
+    return "Bot is running"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app_web.run(host="0.0.0.0", port=port)
 
 # =========================
 # LOAD MENU
@@ -196,18 +213,19 @@ Dinner: {dinner}
 
 
 # =========================
-# START BOT
+# START EVERYTHING
 # =========================
 
-app = ApplicationBuilder().token(BOT_TOKEN).build()
+def start_bot():
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-app.add_handler(
-    MessageHandler(
-        filters.TEXT & ~filters.COMMAND,
-        reply_menu
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, reply_menu)
     )
-)
 
-print("Bot started successfully...")
+    print("Bot started successfully...")
+    app.run_polling()
 
-app.run_polling()
+if __name__ == "__main__":
+    Thread(target=run_web).start()  # Flask server for Render
+    start_bot()
