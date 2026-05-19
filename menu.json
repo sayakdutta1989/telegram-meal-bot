@@ -8,11 +8,11 @@
   "tuesday": {
     "breakfast": ["Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli", "Dosa/uthappam with coconut chutney"],
     "lunch": ["Rajma Chawal", "Khichuri", "Dhokhar torkari", "Paporer Torkari", "Polao/ fried rice aar Poneer Torkari"],
-    "dinner": ["Ruti soya bean chilli", "Ruti Paneer chilli", "Ruti Mixed Veg", "Maggi/Chowmein"]
+    "dinner": ["Ruti soya bean chilli", "Ruti Paneer chilli", "Ruti Mixed Veg", "Motor Ghughni chat", "Maggi/Chowmein"]
   },
 
   "wednesday": {
-    "breakfast": ["Ruti torkari + Omelette/ Bhurji/ Poach", "Bread/Oats Omelette", "Dim Maggi/Chowmein", "Egg Datshi", "Dim Porotta", "Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli"],
+    "breakfast": ["Ruti torkari + Omelette/ Bhurji/ Poach", "Turkish Eggs", "Dim Maggi/Chowmein", "Egg Datshi", "Dim Porotta", "Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli"],
     "lunch": ["Fish Curry+ saag/sabji/sukto", "Chicken Curry+ polao/ fried rice", "Biriyani"],
     "dinner": ["KFC", "chilly/gochujang/dragon/orange chicken",  "Chicken kabab/tandoori/peshawari"]
   },
@@ -24,7 +24,7 @@
   },
 
   "friday": {
-    "breakfast": ["Ruti torkari + Omelette/ Bhurji/ Poach", "Bread/Oats Omelette", "Dim Maggi/Chowmein", "Egg Datshi", "Dim Porotta", "Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli"],
+    "breakfast": ["Ruti torkari + Omelette/ Bhurji/ Poach", "Turkish Eggs", "Dim Maggi/Chowmein", "Egg Datshi", "Dim Porotta", "Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli"],
     "lunch": ["Fish Curry+ saag/sabji/sukto", "Chicken Curry+ polao/ fried rice", "Egg Curry+ saag/sabji/sukto"],
     "dinner": ["Roti + torkari", "Dudh", "chilly/gochujang/dragon/orange chicken",  "Chicken kabab/tandoori/peshawari",  "Chicken kosha/mango Chicken",  "Chicken soup + Bread"]
   },
@@ -32,7 +32,7 @@
   "saturday": {
     "breakfast": ["Luchi/kochuri torkari/dal", "Besan Chilla", "Sattu/beet Parantha", "Poha", "Nonta Suji", "Vermicelli", "Dosa/uthappam with coconut chutney"],
     "lunch": ["Rajma Chawal", "Khichuri", "Dhokhar torkari", "Paporer Torkari", "Polao aar Poneer Torkari"],
-    "dinner": ["Ruti soya bean chilli", "Ruti Paneer chilli", "Ruti Mixed Veg", "rice paper cheese pie", "Korean baby corn"]
+    "dinner": ["Ruti soya bean chilli", "Ruti Paneer chilli", "Ruti Mixed Veg", "Motor Ghughni chat", "rice paper cheese pie", "Korean baby corn"]
   },
 
   "sunday": {
