@@ -20,6 +20,8 @@ from telegram.ext import (
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
+RENDER_URL = os.getenv("RENDER_URL")
+
 TRIGGER = "hi"
 
 HISTORY_FILE = "history.json"
@@ -35,18 +37,10 @@ COOLDOWN_DAYS = {
 HISTORY_RETENTION_DAYS = 14
 
 # =========================
-# FLASK (for Render port)
+# FLASK APP
 # =========================
 
 app_web = Flask(__name__)
-
-@app_web.route("/")
-def home():
-    return "Bot is running"
-
-def run_web():
-    port = int(os.environ.get("PORT", 10000))
-    app_web.run(host="0.0.0.0", port=port)
 
 # =========================
 # LOAD MENU
@@ -213,19 +207,75 @@ Dinner: {dinner}
 
 
 # =========================
-# START EVERYTHING
+# TELEGRAM APPLICATION
 # =========================
 
-def start_bot():
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+telegram_app = Application.builder().token(BOT_TOKEN).build()
 
-    app.add_handler(
-        MessageHandler(filters.TEXT & ~filters.COMMAND, reply_menu)
+telegram_app.add_handler(
+    MessageHandler(
+        filters.TEXT & ~filters.COMMAND,
+        reply_menu
+    )
+)
+
+# =========================
+# FLASK ROUTES
+# =========================
+
+@flask_app.route("/")
+def home():
+    return "Bot is live"
+
+@flask_app.route("/webhook", methods=["POST"])
+async def webhook():
+
+    data = request.get_json()
+
+    update = Update.de_json(
+        data,
+        telegram_app.bot
     )
 
-    print("Bot started successfully...")
-    app.run_polling()
+    await telegram_app.process_update(update)
+
+    return "ok"
+
+# =========================
+# STARTUP
+# =========================
+
+async def setup_webhook():
+
+    webhook_url = f"{RENDER_URL}/webhook"
+
+    await telegram_app.bot.set_webhook(webhook_url)
+
+    print(f"Webhook set to: {webhook_url}")
+
+# =========================
+# MAIN
+# =========================
 
 if __name__ == "__main__":
-    Thread(target=run_web).start()  # Flask server for Render
-    start_bot()
+
+    import asyncio
+
+    loop = asyncio.get_event_loop()
+
+    loop.run_until_complete(
+        telegram_app.initialize()
+    )
+
+    loop.run_until_complete(
+        setup_webhook()
+    )
+
+    print("Webhook bot started successfully...")
+
+    port = int(os.environ.get("PORT", 10000))
+
+    flask_app.run(
+        host="0.0.0.0",
+        port=port
+    )
