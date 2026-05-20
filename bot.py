@@ -228,16 +228,18 @@ def home():
     return "Bot is live"
 
 @flask_app.route("/webhook", methods=["POST"])
-async def webhook():
+def webhook():
 
-    data = request.get_json()
+    data = request.get_json(force=True)
 
     update = Update.de_json(
         data,
         telegram_app.bot
     )
 
-    await telegram_app.process_update(update)
+    asyncio.run(
+        telegram_app.process_update(update)
+    )
 
     return "ok"
 
