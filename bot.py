@@ -40,7 +40,7 @@ HISTORY_RETENTION_DAYS = 14
 # FLASK APP
 # =========================
 
-app_web = Flask(__name__)
+flask_app = Flask(__name__)
 
 # =========================
 # LOAD MENU
