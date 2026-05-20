@@ -5,7 +5,7 @@ import asyncio
 from datetime import datetime, timedelta
 from threading import Thread
 
-from flask import Flask
+from flask import Flask, request
 
 from telegram import Update
 from telegram.ext import (
@@ -259,15 +259,11 @@ async def setup_webhook():
 
 if __name__ == "__main__":
 
-    import asyncio
-
-    loop = asyncio.get_event_loop()
-
-    loop.run_until_complete(
+    asyncio.run(
         telegram_app.initialize()
     )
 
-    loop.run_until_complete(
+    asyncio.run(
         setup_webhook()
     )
 
