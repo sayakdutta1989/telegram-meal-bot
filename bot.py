@@ -259,13 +259,13 @@ async def setup_webhook():
 
 if __name__ == "__main__":
 
-    asyncio.run(
-        telegram_app.initialize()
-    )
+    async def startup():
 
-    asyncio.run(
-        setup_webhook()
-    )
+        await telegram_app.initialize()
+
+        await setup_webhook()
+
+    asyncio.run(startup())
 
     print("Webhook bot started successfully...")
 
